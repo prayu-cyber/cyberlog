@@ -1,5 +1,7 @@
 # cyberlog
 
+# Session 1:
+
 # What I Learned: 
 
 ->Native vs Cross-Platform
@@ -54,3 +56,61 @@ I learned how widgets are combined to build the UI, and how `MaterialApp`, `Scaf
 
  <img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/d871d369-4ee2-4aa9-91b4-3dd3b1ef5324" />
 
+# Session 2:
+
+1]JIT vs AOT Compilation (Core Principles)
+
+-> JIT (Just-In-Time) Compilation:
+
+   > Happens while the app is running.
+   
+   > Enables Hot Reload, making development fast and interactive.
+   
+   > Used mainly during debugging.
+
+-> AOT (Ahead-Of-Time) Compilation:
+
+   > Code is compiled before the app runs.
+   
+   > Produces optimized machine code → faster startup & performance.
+   
+   > Used when building release APKs/app bundles.
+
+-> Flutter uses JIT for development and AOT for production.
+
+2] Using Dart Conditionals for Even/Odd Logic
+
+   -> Inside the button press handler, a simple if–else conditional determines whether the input number is even or odd:
+   
+   if (numValue % 2 == 0) {
+     resultMessage = "The number $numValue is Even.";
+   } else {
+     resultMessage = "The number $numValue is Odd.";
+   }
+   
+   
+   -> This demonstrates:
+   
+      > Reading user input
+      
+      > Converting String → int
+      
+      > Applying conditionals
+      
+      > Updating UI using setState()
+   
+-> String Interpolation for Output Formatting
+   
+   String Interpolation in Dart uses the $variable syntax.
+   This helps embed values directly into the final result text:
+   
+   resultMessage = "The number $numValue is Even.";
+   
+   
+   -> Instead of concatenation ("The number " + numValue.toString()), interpolation is:
+   
+   > Cleaner
+   
+   > Easier to read
+   
+   > More reliable
