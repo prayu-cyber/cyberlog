@@ -1,86 +1,59 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const CyberLogApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Log {
+  String action;
+  DateTime timestamp;
+  String status;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const CheckEvenOdd(),
-    );
+  Log(this.action, this.timestamp, this.status);
+}
+
+class CyberLogApp extends StatelessWidget {
+  const CyberLogApp({super.key});
+
+  String formatDateTime(DateTime dt) {
+    String two(int n) => n.toString().padLeft(2, '0');
+    return '${dt.year}-${two(dt.month)}-${two(dt.day)} '
+        '${two(dt.hour)}:${two(dt.minute)}:${two(dt.second)}';
   }
-}
-
-class CheckEvenOdd extends StatefulWidget {
-  const CheckEvenOdd({super.key});
-
-  @override
-  State<CheckEvenOdd> createState() => _CheckEvenOddState();
-}
-
-class _CheckEvenOddState extends State<CheckEvenOdd> {
-  final TextEditingController numberController = TextEditingController();
-
-  // Variable to show result
-  String result = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Even or Odd App"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
+    List<Log> logs = [
+      Log("User Logged In", DateTime.now().subtract(const Duration(minutes: 2)), "Success"),
+      Log("Attempted Password Change", DateTime.now().subtract(const Duration(minutes: 1)), "Failed"),
+      Log("Data Synced", DateTime.now(), "Success"),
+      Log("User Logged Out", DateTime.now().add(const Duration(minutes: 1)), "Success"),
+    ];
 
-            // Input box
-            TextField(
-              controller: numberController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: "Enter a number",
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Button
-            ElevatedButton(
-              onPressed: () {
-                String input = numberController.text;
-
-                // Convert to int
-                int num = int.tryParse(input) ?? 0;
-
-                // Condition check
-                if (num % 2 == 0) {
-                  result = "The number $num is Even.";
-                } else {
-                  result = "The number $num is Odd.";
-                }
-
-                // Refresh UI
-                setState(() {});
-              },
-              child: const Text("Check"),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Output
-            Text(
-              result,
-              style: const TextStyle(fontSize: 20),
-            ),
-          ],
+    return MaterialApp(
+      title: 'CyberLog',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('CyberLog Activity Logs')),
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ListView(
+            children: logs.map((log) {
+              String formatted = formatDateTime(log.timestamp);
+              return Card(
+                margin: const EdgeInsets.symmetric(vertical: 6),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                elevation: 2,
+                child: ListTile(
+                  leading: Icon(
+                    log.status.toLowerCase() == 'success' ? Icons.check_circle : Icons.error,
+                    color: log.status.toLowerCase() == 'success' ? Colors.green : Colors.red,
+                  ),
+                  title: Text(log.action, style: const TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: Text('$formatted • ${log.status}'),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );
