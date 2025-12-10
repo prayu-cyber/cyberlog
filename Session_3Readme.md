@@ -2,11 +2,11 @@
 
 In this project, I created a custom Log class with three properties:
 
-action (String)
+>action (String)
 
-timestamp (DateTime)
+>timestamp (DateTime)
 
-status (String)
+>status (String)
 
 Using a class allows the log data to be structured and organized in one place.
 
