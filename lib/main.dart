@@ -1,59 +1,75 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const CyberLogApp());
+  runApp(const MyApp());
 }
 
-class Log {
-  String action;
-  DateTime timestamp;
-  String status;
-
-  Log(this.action, this.timestamp, this.status);
-}
-
-class CyberLogApp extends StatelessWidget {
-  const CyberLogApp({super.key});
-
-  String formatDateTime(DateTime dt) {
-    String two(int n) => n.toString().padLeft(2, '0');
-    return '${dt.year}-${two(dt.month)}-${two(dt.day)} '
-        '${two(dt.hour)}:${two(dt.minute)}:${two(dt.second)}';
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Log> logs = [
-      Log("User Logged In", DateTime.now().subtract(const Duration(minutes: 2)), "Success"),
-      Log("Attempted Password Change", DateTime.now().subtract(const Duration(minutes: 1)), "Failed"),
-      Log("Data Synced", DateTime.now(), "Success"),
-      Log("User Logged Out", DateTime.now().add(const Duration(minutes: 1)), "Success"),
-    ];
-
     return MaterialApp(
-      title: 'CyberLog',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('CyberLog Activity Logs')),
-        body: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: ListView(
-            children: logs.map((log) {
-              String formatted = formatDateTime(log.timestamp);
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 6),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                elevation: 2,
-                child: ListTile(
-                  leading: Icon(
-                    log.status.toLowerCase() == 'success' ? Icons.check_circle : Icons.error,
-                    color: log.status.toLowerCase() == 'success' ? Colors.green : Colors.red,
-                  ),
-                  title: Text(log.action, style: const TextStyle(fontWeight: FontWeight.w600)),
-                  subtitle: Text('$formatted • ${log.status}'),
-                ),
-              );
-            }).toList(),
-          ),
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home Dashboard"),
+        centerTitle: true,
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Welcome to Deepcyte Learning Home Screen!",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            Container(
+              padding: const EdgeInsets.all(20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.blueAccent.withValues(),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Text(
+                "Card 1: Flutter-Mobile App Dev Platform....",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            Container(
+              padding: const EdgeInsets.all(20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.greenAccent.withValues(),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Text(
+                "Card 2: MERN Stack-Website Application Dev Programs....",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
         ),
       ),
     );
