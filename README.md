@@ -64,3 +64,15 @@
   >Avoids using "The number " + parsed.toString()
   
   >Makes UI-friendly messages easy to build
+
+After session 5:
+
+The CyberLog app was upgraded using a BottomNavigationBar with three main sections: Home, Logs, and Settings. A StatefulWidget manages the selected index, and tapping each navigation icon dynamically updates the screen content, forming the core structure of the application.
+
+![img.png](img.png)
+
+After session 6:
+
+Than updated the cyberlog app with the provider, by managing the logs screen .!
+
+![img_1.png](img_1.png)
