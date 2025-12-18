@@ -75,4 +75,6 @@ After session 6:
 
 Than updated the cyberlog app with the provider, by managing the logs screen .!
 
-![img_1.png](img_1.png)
+<img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/0d3f36d8-3c72-489a-9eec-fd18643f75fd" />
+
+
