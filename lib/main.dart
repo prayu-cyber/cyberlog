@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(
@@ -10,8 +12,6 @@ void main() {
   );
 }
 
-/* ================= PROVIDER ================= */
-
 class LogsProvider extends ChangeNotifier {
   int logCount = 0;
 
@@ -20,8 +20,6 @@ class LogsProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-/* ================= APP ================= */
 
 class CyberLogApp extends StatelessWidget {
   const CyberLogApp({super.key});
@@ -84,17 +82,86 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-/* ================= PAGES ================= */
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String cyberTip = "Loading cyber tip...";
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCyberTip();
+  }
+
+  Future<void> fetchCyberTip() async {
+    try {
+      final response =
+      await http.get(Uri.parse("https://zenquotes.io/api/random"));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          cyberTip = data[0]['q'];
+        });
+      } else {
+        cyberTip = "Failed to load cyber tip.";
+      }
+    } catch (e) {
+      cyberTip = "Error fetching cyber tip.";
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Welcome to CyberLog",
-        style: TextStyle(fontSize: 22),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Welcome to CyberLog",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+
+          const SizedBox(height: 20),
+
+          Card(
+            elevation: 4,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "🛡 Cyber Tip of the Day",
+                    style:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    cyberTip,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: fetchCyberTip,
+                      child: const Text("Refresh Tip"),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
