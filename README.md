@@ -86,3 +86,5 @@ By building the cyber tips of the day and it also has an public api.
 having refresh hover buttton like refresh tips . ! 
 
 In future i will add the api containing only actual cyber sec tips / quotes .!
+
+<img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/c23c288f-d372-49e4-b030-dae4ad505b55" />
