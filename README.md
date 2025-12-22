@@ -77,4 +77,12 @@ Than updated the cyberlog app with the provider, by managing the logs screen .!
 
 <img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/0d3f36d8-3c72-489a-9eec-fd18643f75fd" />
 
+#Session 8:
 
+There are no public apis having cyber security tips as such , so right now added normal quotes api ! 
+
+By building the cyber tips of the day and it also has an public api.
+
+having refresh hover buttton like refresh tips . ! 
+
+In future i will add the api containing only actual cyber sec tips / quotes .!
