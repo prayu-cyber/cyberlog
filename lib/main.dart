@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(
@@ -15,8 +16,20 @@ void main() {
 class LogsProvider extends ChangeNotifier {
   int logCount = 0;
 
-  void addLog() {
+  LogsProvider() {
+    loadLogs();
+  }
+
+  Future<void> loadLogs() async {
+    final prefs = await SharedPreferences.getInstance();
+    logCount = prefs.getInt('logCount') ?? 0;
+    notifyListeners();
+  }
+
+  Future<void> addLog() async {
     logCount++;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('logCount', logCount);
     notifyListeners();
   }
 }
@@ -53,29 +66,16 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("CyberLog")),
-
       body: _pages[_currentIndex],
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          setState(() => _currentIndex = index);
         },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "Logs",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Logs"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
     );
@@ -127,13 +127,12 @@ class _HomePageState extends State<HomePage> {
             "Welcome to CyberLog",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(height: 20),
-
           Card(
             elevation: 4,
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -145,10 +144,7 @@ class _HomePageState extends State<HomePage> {
                     TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    cyberTip,
-                    style: const TextStyle(fontSize: 16),
-                  ),
+                  Text(cyberTip, style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
@@ -156,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: fetchCyberTip,
                       child: const Text("Refresh Tip"),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
