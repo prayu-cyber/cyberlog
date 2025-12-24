@@ -88,3 +88,11 @@ having refresh hover buttton like refresh tips . !
 In future i will add the api containing only actual cyber sec tips / quotes .!
 
 <img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/c23c288f-d372-49e4-b030-dae4ad505b55" />
+
+#Session 9:
+
+>Use SharedPreferences or Hive and applied it on cyberlog app.
+
+>Applied in Logs to keep record of log count.
+
+![WhatsApp Image 2025-12-24 at 9 13 33 PM](https://github.com/user-attachments/assets/23bd4d0f-da6c-4aee-b1bf-e98f1951d5f5)
