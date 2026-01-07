@@ -186,3 +186,35 @@ lib/
 <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
 <uses-permission android:name="android.permission.INTERNET"/>
+
+the cyberlog app screenshots :
+
+![1](https://github.com/user-attachments/assets/9b02af77-bfdf-4495-8fd1-6b334bac79cc)
+
+![2](https://github.com/user-attachments/assets/cc2cb680-24fb-4d05-aae0-b0a72c2f46e2)
+
+![3](https://github.com/user-attachments/assets/705865d0-592a-4187-83c9-3a915618a3a6)
+
+![4](https://github.com/user-attachments/assets/5e69342f-610a-4d72-99c6-ae032dbc934c)
+
+![5](https://github.com/user-attachments/assets/207c64c7-399f-4e22-9e33-30fb37261e47)
+
+![6](https://github.com/user-attachments/assets/22bce004-65ba-4629-a4e3-2cc22b2278f4)
+
+![7) by clicking the selected image this opens up](https://github.com/user-attachments/assets/a4bc5a8d-ab07-4dbe-b6ea-6195e7009941)
+
+![8)we can zoom in and out also can delete ](https://github.com/user-attachments/assets/a030b16a-4d0c-4f87-abdf-0c1a53bd67e5)
+
+![9](https://github.com/user-attachments/assets/097c0f7d-d742-4b50-9864-fb77a60cc824)
+
+![10) After deleting the image ](https://github.com/user-attachments/assets/b16b2aea-553e-4a30-8e4c-124969d6e420)
+
+
+
+
+
+
+
+
+
+
