@@ -96,3 +96,93 @@ In future i will add the api containing only actual cyber sec tips / quotes .!
 >Applied in Logs to keep record of log count.
 
 ![WhatsApp Image 2025-12-24 at 9 13 33 PM](https://github.com/user-attachments/assets/23bd4d0f-da6c-4aee-b1bf-e98f1951d5f5)
+
+Session 10 – Portfolio Assignment.
+
+✨ Features
+🔐 Permissions
+
+📸 Camera Permission – Capture images using device camera
+
+🖼️ Storage Permission – Save images permanently inside the app
+
+🌐 Internet Permission – Fetch online data & detect connectivity
+
+🌐 Internet Handling (Real App Behavior)
+
+Detects real internet availability
+
+Shows “No Internet Connection” message
+
+Automatically reloads data when internet is restored
+
+Offline cyber-tip cache using SharedPreferences
+
+🖼️ Media / Image Features
+
+Capture images using Camera
+
+Pick images from Gallery
+
+Images saved permanently (even after app restart)
+
+Grid view of all images
+
+Tap image → Full screen viewer
+
+Zoom in / zoom out (pinch)
+
+Delete image at any time
+
+🎨 UI & UX
+
+Bottom Navigation Bar
+
+Dark Mode 🌙
+
+Smooth navigation
+
+Clean & minimal UI
+
+Animated transitions
+
+📦 State & Storage
+
+Provider for state management
+
+SharedPreferences for:
+
+Log count
+
+Dark mode state
+
+Cached cyber tips
+
+🧰 Tech Stack
+
+Flutter (Dart)
+
+Provider
+
+Image Picker
+
+Permission Handler
+
+Path Provider
+
+Connectivity Plus
+
+HTTP
+
+Shared Preferences
+
+📂 Project Structure
+lib/
+ └── main.dart   // Complete application code
+
+📜 Permissions Used (Android)
+<uses-permission android:name="android.permission.CAMERA"/> 
+
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
+<uses-permission android:name="android.permission.INTERNET"/>
