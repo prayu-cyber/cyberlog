@@ -210,6 +210,60 @@ the cyberlog app screenshots :
 ![10) After deleting the image ](https://github.com/user-attachments/assets/b16b2aea-553e-4a30-8e4c-124969d6e420)
 
 
+Session 11 – Portfolio Assignment
+
+📌 Assignment Objective
+
+Enhance the CyberLog Flutter application by adding a Settings page and displaying basic device information using native Android integration.
+
+✅ Features Implemented
+🔧 Settings Page
+
+A new Settings section has been added to the CyberLog app and is accessible via the bottom navigation bar.
+
+📱 Device Information Displayed
+
+The following device details are shown inside the Settings page:
+
+Device Model
+
+Android Version (Optional – implemented)
+
+Device Manufacturer (Additional enhancement)
+
+These details are fetched from native Android code using a MethodChannel.
+
+🧠 Technical Implementation
+
+Flutter (Dart) for UI and state management
+
+Provider for theme handling
+
+MethodChannel for communication between Flutter and Android
+
+Android (Java) to fetch device system information:
+
+Build.MODEL
+
+Build.MANUFACTURER
+
+Build.VERSION.RELEASE
+
+📂 Project Structure (Key Files)
+
+lib/main.dart – Main application logic and UI
+
+android/app/src/main/java/.../MainActivity.java – Native Android code for device info
+
+pubspec.yaml – Dependencies and configuration
+
+#Screenshot of the session 11 work:
+
+![S11 l](https://github.com/user-attachments/assets/f8d5cd5e-766b-4ee2-a12e-c0d33de2fabc)
+
+![S11 d](https://github.com/user-attachments/assets/312c3a6d-6eda-469e-81cc-0b25c27c90fb)
+
+
 
 
 
