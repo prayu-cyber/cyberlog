@@ -9,8 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/services.dart';
 
-#PROVIDER
+/// ================= PROVIDER =================
 
 class LogsProvider extends ChangeNotifier {
   int logCount = 0;
@@ -42,7 +43,7 @@ class LogsProvider extends ChangeNotifier {
   }
 }
 
-#MAIN
+/// ================= MAIN =================
 
 void main() {
   runApp(
@@ -67,7 +68,7 @@ class CyberLogApp extends StatelessWidget {
   }
 }
 
-#MAIN SCREEN=
+/// ================= MAIN SCREEN =================
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -118,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-#INTERNET UTILS
+/// ================= INTERNET UTILS =================
 
 Future<bool> hasRealInternet() async {
   try {
@@ -129,7 +130,7 @@ Future<bool> hasRealInternet() async {
   }
 }
 
-#HOME
+/// ================= HOME =================
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -160,9 +161,6 @@ class _HomePageState extends State<HomePage> {
           online = false;
           tip = "No Internet ❌";
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Please check your internet connection")),
-        );
       } else {
         if (!online) {
           await _fetchTip();
@@ -229,7 +227,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-#LOGS
+/// ================= LOGS =================
 
 class LogsPage extends StatelessWidget {
   const LogsPage({super.key});
@@ -254,7 +252,7 @@ class LogsPage extends StatelessWidget {
   }
 }
 
-#MEDIA
+/// ================= MEDIA =================
 
 class MediaPage extends StatefulWidget {
   const MediaPage({super.key});
@@ -309,23 +307,7 @@ class _MediaPageState extends State<MediaPage> {
             itemCount: images.length,
             gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-            itemBuilder: (_, i) => GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => FullImageViewer(
-                      image: images[i],
-                      onDelete: () {
-                        images[i].deleteSync();
-                        setState(() => images.removeAt(i));
-                      },
-                    ),
-                  ),
-                );
-              },
-              child: Image.file(images[i], fit: BoxFit.cover),
-            ),
+            itemBuilder: (_, i) => Image.file(images[i], fit: BoxFit.cover),
           ),
         ),
         Row(
@@ -351,40 +333,7 @@ class _MediaPageState extends State<MediaPage> {
   }
 }
 
-#IMAGE VIEWER 
-
-class FullImageViewer extends StatelessWidget {
-  final File image;
-  final VoidCallback onDelete;
-
-  const FullImageViewer({
-    super.key,
-    required this.image,
-    required this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(actions: [
-        IconButton(
-          icon: const Icon(Icons.delete),
-          onPressed: () {
-            onDelete();
-            Navigator.pop(context);
-          },
-        )
-      ]),
-      body: InteractiveViewer(
-        minScale: 1,
-        maxScale: 5,
-        child: Center(child: Image.file(image)),
-      ),
-    );
-  }
-}
-
-#PERMISSIONS
+/// ================= PERMISSIONS =================
 
 class PermissionPage extends StatelessWidget {
   const PermissionPage({super.key});
@@ -407,24 +356,69 @@ class PermissionPage extends StatelessWidget {
         _tile("Camera", Permission.camera),
         _tile("Storage", Permission.photos),
       ]),
-      builder: (_, snap) =>
-      snap.hasData ? ListView(children: snap.data!) : const Center(child: CircularProgressIndicator()),
+      builder: (_, snap) => snap.hasData
+          ? ListView(children: snap.data!)
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }
 
-# SETTINGS 
+/// ================= SETTINGS (UPDATED) =================
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
   @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  static const platform = MethodChannel('device_info_channel');
+
+  String model = "Loading...";
+  String version = "Loading...";
+  String manufacturer = "Loading..."; // ✅ ADDED
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInfo();
+  }
+
+  Future<void> _loadInfo() async {
+    final Map info = await platform.invokeMethod('getDeviceInfo');
+    setState(() {
+      model = info['model'];
+      version = info['version'];
+      manufacturer = info['manufacturer']; // ✅ ADDED
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Dark mode\nCamera & Storage permissions\nImages saved permanently",
-        textAlign: TextAlign.center,
-      ),
+    return ListView(
+      children: [
+        const ListTile(
+          title: Text("Settings",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        ),
+        const Divider(),
+        ListTile(
+          leading: const Icon(Icons.phone_android),
+          title: const Text("Device Model"),
+          trailing: Text(model),
+        ),
+        ListTile(
+          leading: const Icon(Icons.factory),
+          title: const Text("Manufacturer"),
+          trailing: Text(manufacturer),
+        ),
+        ListTile(
+          leading: const Icon(Icons.android),
+          title: const Text("Android Version"),
+          trailing: Text(version),
+        ),
+      ],
     );
   }
 }
