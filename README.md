@@ -264,6 +264,176 @@ pubspec.yaml – Dependencies and configuration
 ![S11 d](https://github.com/user-attachments/assets/312c3a6d-6eda-469e-81cc-0b25c27c90fb)
 
 
+Session 12 Portfolio Assignment:-
+
+Security Checklist & Security-Awareness Application (Flutter):
+
+🎯 Objective (Session 12)
+
+The objective of Session 12 is to understand and implement mobile security concepts through a practical application.
+
+This project demonstrates:
+
+App-level security using PIN lock
+
+Permission awareness and risk indication
+
+Root / emulator awareness (placeholder)
+
+Security-awareness focused UI
+
+📱 About the Application
+
+CyberLog is a Flutter-based mobile application designed to demonstrate security best practices and user awareness.
+
+The app includes logging features, offline media storage, permission inspection, and a dedicated Security Awareness Dashboard.
+
+🔐 Security Features Implemented:
+
+1️⃣ App Lock (Custom PIN)
+
+First-time users are prompted to create a 4-digit PIN
+
+PIN is stored securely using device-level secure storage
+
+Same PIN works:
+
+On every app launch
+
+Even after app reinstallation on the same device
+
+Demonstrates screen lock / app lock security
+
+✔ Session 12 requirement: Screen lock enabled (mock / basic check)
+
+2️⃣ Dangerous Permissions Indicator
+
+The app checks and displays sensitive permissions:
+
+Permission	Risk Level:
+
+->Camera	🔴 High Risk
+
+->Storage	🟠 Medium Risk
+
+Displayed clearly in:
+
+Permissions page
+
+Security Awareness Dashboard
+
+✔ Session 12 requirement: Dangerous permissions indicator
+
+3️⃣ Root / Emulator Warning (Placeholder)
+
+A placeholder UI element is shown for root/emulator detection
+
+Clearly labeled as not enabled
+
+Educates users about potential risks of rooted/emulated environments
+
+✔ Session 12 requirement: Root / emulator warning (placeholder allowed)
+
+🧠 Security-Awareness UI (Core Focus of Session 12)
+
+The Security Awareness Dashboard is designed to educate users, not just show system data.
+
+UI Elements Included:
+
+⚠️ Warning banner highlighting security risks
+
+Color-coded risk cards (green / orange / red)
+
+Clear, non-technical explanations
+
+Security best-practice tips such as:
+
+Avoid unnecessary permissions
+
+Use app locks
+
+Avoid unknown app sources
+
+Keep OS and apps updated
+
+✔ Session 12 requirement: Security-awareness UI
+
+📂 Other Application Features:
+
+🏠 Home Page:
+
+Displays cybersecurity tips fetched from an API
+
+Offline caching supported
+
+📝 Logs Page:
+
+Simple log counter to demonstrate local data storage
+
+🖼 Media Page:
+
+Capture images using camera
+
+Select images from gallery
+
+Images stored locally
+
+Features:
+
+Full-screen image viewer
+
+Pinch-to-zoom
+
+Delete images
+
+🔑 Permissions Page
+
+Shows current permission status
+
+Color-coded granted / denied indicators
+
+⚙ Settings Page
+
+Displays device information:
+
+Model
+
+Manufacturer
+
+Android version
+
+Uses native platform channel
+
+🛠 Technologies Used
+
+Flutter & Dart
+
+Provider (state management)
+
+SharedPreferences (local data)
+
+Flutter Secure Storage (secure PIN storage)
+
+Permission Handler
+
+Image Picker
+
+Connectivity Plus
+
+Path Provider
+
+Platform Channels (Android)
+
+->All screenshots from session 12 required changes updated:
+
+![12 1](https://github.com/user-attachments/assets/cd12f914-51e7-4405-b231-123d7d20a779)
+
+![12 2](https://github.com/user-attachments/assets/c22d2cf6-8c25-4fc4-8392-0372aa7cffa0)
+
+![12 3](https://github.com/user-attachments/assets/85184a4b-6f24-46da-bf25-b96dc50ac8be)
+
+![12 4](https://github.com/user-attachments/assets/619699c7-6d43-4ebe-85e8-3a2132f97e45)
+
 
 
 
