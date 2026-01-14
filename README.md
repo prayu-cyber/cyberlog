@@ -434,6 +434,15 @@ Platform Channels (Android)
 
 ![12 4](https://github.com/user-attachments/assets/619699c7-6d43-4ebe-85e8-3a2132f97e45)
 
+#Session 13:
+
+I am getting the error in solving the project :
+
+-> After adding the all code correct , connecting properly to the firebase console database using authentication. But, the main problem coming is about the gradle file. Its not syncing properly.
+Below is the screenshot of the error sir :
+
+<img width="1365" height="767" alt="Screenshot 2026-01-14 225429" src="https://github.com/user-attachments/assets/03386d5f-94ed-4414-9be9-f97ff0ed4b1c" />
+
 
 
 
